@@ -6,7 +6,8 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 
 import static com.mongodb.assertions.Assertions.fail;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -25,8 +26,8 @@ public class ActivityTest {
                 90,
                 "60",
                 "50",
-                new Date(2020, 10, 10)
-                );
+                new Date(2022, Calendar.DECEMBER, 1)
+        );
         Activity brokenActivity = new Activity(
                 "Christine",
                 90,
@@ -52,8 +53,8 @@ public class ActivityTest {
         }
 
         @Test
-        @DisplayName("Test if the save method of the repository is called with a Book")
-        public void save_withBook_shouldCallRepository () {
+        @DisplayName("Test if the save method of the repository is called with an Activity")
+        public void save_withActivity_shouldCallRepository () {
             //Arrange
             when(activityRepository.save(activityTest)).thenReturn(id);
 
