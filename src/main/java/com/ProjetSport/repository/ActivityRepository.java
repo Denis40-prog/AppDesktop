@@ -1,19 +1,11 @@
-package com.picard.bibliotheque.repository;
+package com.ProjetSport.repository;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.result.InsertOneResult;
-import com.picard.bibliotheque.model.Book;
-import org.bson.Document;
+import com.ProjetSport.model.Activity;
 
-import static com.picard.bibliotheque.mapper.BookMapper.bookToDocument;
+import java.util.List;
 
-public class BookRepositoryImpl implements BookRepository{
-    MongoCollection<Document> collection;
-    public BookRepositoryImpl(MongoCollection<Document> collection){
-        this.collection = collection;
-    }
-    @Override
-    public InsertOneResult save(Book book) {
-        return this.collection.insertOne(bookToDocument(book));
-    }
+public interface ActivityRepository {
+    String save(Activity activity);
+
+    List<Activity> getAll();
 }
