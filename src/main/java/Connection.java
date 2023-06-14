@@ -1,8 +1,10 @@
+import com.ProjetSport.GUI.Window;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class Connection {
             List<Document> databases = mongoClient.listDatabases().into(new ArrayList<>());
             databases.forEach(db -> log.info("Databases : {}", db.toJson()));
         }
+
+        JFrame frame = new Window();
     }
-
-
 
 }

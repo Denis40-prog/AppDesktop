@@ -33,7 +33,7 @@ public class ActivityTest {
                 90,
                 "60",
                 "50",
-                new Date(2020, 10, 10)
+                new Date(2020, Calendar.DECEMBER, 10)
         );
         String id = "idChristine";
 
