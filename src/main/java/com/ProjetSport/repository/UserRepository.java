@@ -1,4 +1,12 @@
 package com.ProjetSport.repository;
 
-public class UserRepository {
+import com.ProjetSport.model.Activity;
+import com.ProjetSport.model.User;
+
+import java.util.List;
+
+public interface UserRepository {
+    String save(User user);
+
+    List<Activity> getAll();
 }

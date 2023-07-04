@@ -2,6 +2,7 @@ package com.ProjetSport;
 
 import com.ProjetSport.Controller.ActivityControllerImpl;
 import com.ProjetSport.GUI.Window;
+import com.ProjetSport.GUI.register_window;
 import com.ProjetSport.repository.ActivityRepositoryImpl;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -16,6 +17,6 @@ public class Main {
     public static void main(String[] args)
     {
         Connection connexion = new Connection();
-        JFrame frame = new Window(connexion);
+        JFrame frame = new register_window(connexion);
     }
 }

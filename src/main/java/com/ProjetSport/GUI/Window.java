@@ -5,20 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
 import com.ProjetSport.Controller.ActivityControllerImpl;
 import com.ProjetSport.model.Activity;
 import com.ProjetSport.Connection;
-import com.ProjetSport.repository.ActivityRepository;
 import com.ProjetSport.repository.ActivityRepositoryImpl;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import lombok.extern.slf4j.Slf4j;
-import org.bson.Document;
 
 @Slf4j
 public class Window extends JFrame {
@@ -49,18 +43,8 @@ public class Window extends JFrame {
         GridLayout gridLabel = new GridLayout(5, 1);
         GridLayout gridText = new GridLayout(5, 1);
 
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        /* Méthodes utiles : getScreenSize, getScreenResolution,
-        getDefaultToolkit, beep, getImage,
-        createImage, getSystemEventQueue
-        */
-        Dimension dimension = tk.getScreenSize();
-        // tk.beep();
-
-        setBounds(0, 0, 600, 400);
-
         // Centre une fenetre
-        setLocationRelativeTo(null);
+
 
         //On créé le container (ou JPannel)
         //Container cp = this.getContentPane();
@@ -153,8 +137,9 @@ public class Window extends JFrame {
         background.add(panelLabel, BorderLayout.WEST);
         background.add(panelText);
         background.add(panelBouton, BorderLayout.SOUTH);
-        setSize(400, 400);
+        setSize(600, 600);
+        setLocationRelativeTo(null);
 
-        setVisible(true);
+        setVisible(false);
     }
 }
