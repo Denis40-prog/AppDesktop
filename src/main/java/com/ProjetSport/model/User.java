@@ -11,9 +11,13 @@ import java.util.Date;
 public class User {
 
     private ObjectId id;
+    @Setter
     private String name;
+    @Setter
     private String lastName;
+    @Setter
     private String birthdate;
+    @Setter
     private String gender;
 
     public User(String name, String lastName, String birthdate, String gender) {

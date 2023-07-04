@@ -1,5 +1,6 @@
 package com.ProjetSport.repository;
 
+import com.ProjetSport.model.Activity;
 import com.ProjetSport.model.User;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -13,17 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.ProjetSport.Mapper.ActivityMapper.activityToDocument;
-import static com.ProjetSport.Mapper.ActivityMapper.documentToActivity;
 import static com.ProjetSport.Mapper.UserMapper.documentToUser;
 import static com.ProjetSport.Mapper.UserMapper.userToDocument;
 
-public class UserRepositoryImpl {
+public class UserRepositoryImpl implements UserRepository {
     MongoCollection<Document> collection;
     public UserRepositoryImpl(MongoClient mongoClient){
-        this.collection = mongoClient.getDatabase("myActivities").getCollection("activities");;
+        this.collection = mongoClient.getDatabase("myActivities").getCollection("users");;
     }
 
+    @Override
     public String save(User user) {
         InsertOneResult result = this.collection.insertOne(userToDocument(user));
         return Objects.requireNonNull(result.getInsertedId()).toString();
@@ -44,7 +44,7 @@ public class UserRepositoryImpl {
         return result.getModifiedCount();
     }
 
-
+    @Override
     public List<User> getAll() {
         List<User> users = new ArrayList<>();
         for (Document document : this.collection.find()) {

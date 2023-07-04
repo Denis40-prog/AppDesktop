@@ -8,5 +8,5 @@ import java.util.List;
 public interface UserRepository {
     String save(User user);
 
-    List<Activity> getAll();
+    List<User> getAll();
 }

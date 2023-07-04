@@ -20,7 +20,7 @@ public class register_window extends JFrame{
         JFrame frame1 = new Window(connexion);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JFrame frame2 = new JFrame("Frame 2");
+        JFrame frame2 = new JFrame("Inscription");
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.setSize(600, 600);
         frame2.setLocationRelativeTo(null);
@@ -40,11 +40,11 @@ public class register_window extends JFrame{
 
         JLabel nom = new JLabel("Nom : ");
         JTextField textNom = new JTextField();
-        JLabel prenom = new JLabel("Durée : ");
+        JLabel prenom = new JLabel("Prénom : ");
         JTextField textPrenom = new JTextField();
-        JLabel dateNais = new JLabel("RPE : ");
+        JLabel dateNais = new JLabel("Date de naissance : ");
         JTextField textDateNais = new JTextField();
-        JLabel sexe = new JLabel("Charge : ");
+        JLabel sexe = new JLabel("Sexe : ");
         JTextField textSexe = new JTextField();
 
         panelLabel.add(nom);
