@@ -23,14 +23,14 @@ public class Activity {
     @Setter
     private Date date;
 
-    public Activity(ObjectId id, String name, Integer duration, String rpe, String load, Date date) {
+    /*public Activity(ObjectId id, String name, Integer duration, String rpe, String load, Date date) {
         this.id = id;
         this.name = name;
         this.duration = duration;
         this.rpe = rpe;
         this.load = load;
         this.date = date;
-    }
+    }*/
     public Activity(String name, Integer duration, String rpe, String load, Date date) {
         this.name = name;
         this.duration = duration;

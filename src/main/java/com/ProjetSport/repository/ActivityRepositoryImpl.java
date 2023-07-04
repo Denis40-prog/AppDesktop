@@ -1,6 +1,7 @@
 package com.ProjetSport.repository;
 
 import com.ProjetSport.model.Activity;
+import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
@@ -16,8 +17,8 @@ import java.util.Objects;
 
 public class ActivityRepositoryImpl implements ActivityRepository {
     MongoCollection<Document> collection;
-    public ActivityRepositoryImpl(MongoCollection<Document> collection){
-        this.collection = collection;
+    public ActivityRepositoryImpl(MongoClient mongoClient){
+        this.collection = mongoClient.getDatabase("myActivities").getCollection("activities");;
     }
     @Override
     public String save(Activity activity) {
