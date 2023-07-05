@@ -1,4 +1,6 @@
 package com.ProjetSport.GUI;
+import com.ProjetSport.Controller.ActivityController;
+import com.ProjetSport.Controller.UserController;
 import com.ProjetSport.Controller.UserControllerImpl;
 import com.ProjetSport.Connection;
 import com.ProjetSport.model.User;
@@ -12,19 +14,19 @@ import java.awt.event.ActionListener;
 
 @Slf4j
 public class register_window extends JFrame{
-    UserControllerImpl userController;
-
-    Connection connexion = new Connection();
-    public register_window(Connection connexion) {
+    public register_window(ActivityController activityController, UserController userController) {
         setLayout(new BorderLayout());
-        JFrame frame1 = new Window(connexion);
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame list_activities_frame = new list_activities(activityController);
+        list_activities_frame.setSize(600,600);
+        list_activities_frame.setLocationRelativeTo(null);
+        list_activities_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JFrame frame2 = new JFrame("Inscription");
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame2.setSize(600, 600);
+        frame2.setSize(600, 400);
         frame2.setLocationRelativeTo(null);
         JButton btn_register = new JButton("Inscription");
+        JButton btn_alreadyLogin = new JButton("Deja Inscrit");
 
 
         //DEFINITION DE L AFFICHAGE
@@ -58,13 +60,15 @@ public class register_window extends JFrame{
         panelText.add(textSexe);
 
         panelBouton.add(btn_register);
+        panelBouton.add(btn_alreadyLogin);
         JPanel fieldPanel = new JPanel(new GridLayout(0,2));
         fieldPanel.add(panelLabel);
         fieldPanel.add(panelText);
         frame2.setLayout(new GridLayout(0, 1));
         frame2.add(fieldPanel);
         frame2.add(panelBouton, BorderLayout.CENTER);
-
+        fieldPanel.setBackground(Color.PINK);
+        panelBouton.setBackground(Color.PINK);
         frame2.setVisible(true);
 
         // FONCTION ET ACTION
@@ -72,19 +76,13 @@ public class register_window extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nomValue = textNom.getText();
-                String prenomValue = prenom.getText();
-                String dateNaisValue = dateNais.getText();
-                String sexeValue = sexe.getText();
-
-                // Effectuez les opérations de traitement nécessaires avec les valeurs récupérées
+                String prenomValue = textPrenom.getText();
+                String dateNaisValue = textDateNais.getText();
+                String sexeValue = textSexe.getText();
 
                 if (!nomValue.isEmpty() && !prenomValue.isEmpty() && !dateNaisValue.isEmpty() && !sexeValue.isEmpty()) {
                     User user = new User(nomValue, prenomValue, dateNaisValue, sexeValue);
-                    //Connexion
-                    connexion.connect();
                     //Instanciation du controller
-                    UserRepositoryImpl userRepo = new UserRepositoryImpl(connexion.getMongoClient());
-                    userController = new UserControllerImpl(userRepo);
                     //Save Activity
                     userController.saveUser(user);
                     //Clear tout les champs
@@ -94,11 +92,21 @@ public class register_window extends JFrame{
                     textDateNais.setText("");
                     //Met la pop-up quand c'ets validé
                     JOptionPane.showMessageDialog(null, "Inscription réussie !", "Succès", JOptionPane.INFORMATION_MESSAGE);
-                    connexion.close();
                     frame2.setVisible(false);
-                    frame1.setVisible(true);
+                    list_activities_frame.setVisible(true);
                 }
+                // Effectuez les opérations de traitement nécessaires avec les valeurs récupérées
 
+
+            }
+
+        });
+
+        btn_alreadyLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                frame2.setVisible(false);
+                list_activities_frame.setVisible(true);
             }
         });
 

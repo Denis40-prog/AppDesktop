@@ -18,7 +18,7 @@ import java.util.Objects;
 public class ActivityRepositoryImpl implements ActivityRepository {
     MongoCollection<Document> collection;
     public ActivityRepositoryImpl(MongoClient mongoClient){
-        this.collection = mongoClient.getDatabase("myActivities").getCollection("activities");;
+        this.collection = mongoClient.getDatabase("myActivities").getCollection("activities");
     }
     @Override
     public String save(Activity activity) {

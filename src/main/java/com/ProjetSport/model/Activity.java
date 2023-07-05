@@ -17,9 +17,9 @@ public class Activity {
     @Setter
     private Integer duration;
     @Setter
-    private String rpe;
+    private Integer rpe;
     @Setter
-    private String load;
+    private Integer load;
     @Setter
     private Date date;
 
@@ -31,7 +31,7 @@ public class Activity {
         this.load = load;
         this.date = date;
     }*/
-    public Activity(String name, Integer duration, String rpe, String load, Date date) {
+    public Activity(String name, Integer duration, Integer rpe, Integer load, Date date) {
         this.name = name;
         this.duration = duration;
         this.rpe = rpe;

@@ -3,7 +3,7 @@ import com.ProjetSport.model.Activity;
 import com.ProjetSport.model.User;
 import org.bson.Document;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class UserMapper {
 
