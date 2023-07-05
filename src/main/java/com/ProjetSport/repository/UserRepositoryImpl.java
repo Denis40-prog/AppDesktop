@@ -1,6 +1,7 @@
 package com.ProjetSport.repository;
 
 import com.ProjetSport.model.Activity;
+import com.ProjetSport.model.User;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.DeleteResult;
@@ -11,46 +12,48 @@ import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.ProjetSport.Mapper.ActivityMapper.activityToDocument;
-import static com.ProjetSport.Mapper.ActivityMapper.documentToActivity;
 import java.util.Objects;
 
-public class ActivityRepositoryImpl implements ActivityRepository {
+import static com.ProjetSport.Mapper.UserMapper.documentToUser;
+import static com.ProjetSport.Mapper.UserMapper.userToDocument;
+
+public class UserRepositoryImpl implements UserRepository {
     MongoCollection<Document> collection;
-    public ActivityRepositoryImpl(MongoClient mongoClient){
-        this.collection = mongoClient.getDatabase("myActivities").getCollection("activities");
+    public UserRepositoryImpl(MongoClient mongoClient){
+        this.collection = mongoClient.getDatabase("myActivities").getCollection("users");;
     }
+
     @Override
-    public String save(Activity activity) {
-        InsertOneResult result = this.collection.insertOne(activityToDocument(activity));
+    public String save(User user) {
+        InsertOneResult result = this.collection.insertOne(userToDocument(user));
         return Objects.requireNonNull(result.getInsertedId()).toString();
     }
 
-    public Long delete(Activity activity){
-        DeleteResult result = this.collection.deleteOne(activityToDocument(activity));
+    public Long delete(User user){
+        DeleteResult result = this.collection.deleteOne(userToDocument(user));
         return result.getDeletedCount();
     }
 
-    public long uptdate(Activity activity){
+    public long uptdate(User user){
         Document documentQuery = new Document();
         documentQuery.append(
                 "_id",
-                activity.getId()
+                user.getId()
         );
-        UpdateResult result = this.collection.updateOne(documentQuery, activityToDocument(activity));
+        UpdateResult result = this.collection.updateOne(documentQuery, userToDocument(user));
         return result.getModifiedCount();
     }
 
     @Override
-    public List<Activity> getAll() {
-        List<Activity> activities = new ArrayList<>();
+    public List<User> getAll() {
+        List<User> users = new ArrayList<>();
         for (Document document : this.collection.find()) {
-            activities.add(documentToActivity(document));
+            users.add(documentToUser(document));
         }
-        return activities;
+        return users;
     }
 
-    public Activity getById(ObjectId id) {
+    public User getById(ObjectId id) {
         Document documentQuery = new Document();
         documentQuery.append(
                 "_id",
@@ -58,7 +61,6 @@ public class ActivityRepositoryImpl implements ActivityRepository {
         );
         Document result = this.collection.find(documentQuery).first();
         assert result != null;
-        return documentToActivity(result);
+        return documentToUser(result);
     }
 }
-

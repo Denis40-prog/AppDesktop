@@ -2,6 +2,7 @@ package com.ProjetSport.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 
 import java.util.Date;
 
@@ -9,12 +10,17 @@ import java.util.Date;
 @Setter
 public class User {
 
+    private ObjectId id;
+    @Setter
     private String name;
+    @Setter
     private String lastName;
-    private Date birthdate;
+    @Setter
+    private String birthdate;
+    @Setter
     private String gender;
 
-    public User(String name, String lastName, Date birthdate, String gender) {
+    public User(String name, String lastName, String birthdate, String gender) {
         this.name = name;
         this.lastName = lastName;
         this.birthdate = birthdate;
