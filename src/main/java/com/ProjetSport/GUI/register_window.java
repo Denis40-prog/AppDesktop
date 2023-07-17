@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 @Slf4j
 public class register_window extends JFrame{
     public register_window(ActivityController activityController, UserController userController) {
+        //Instanciation des deux frame
         setLayout(new BorderLayout());
         JFrame list_activities_frame = new list_activities(activityController);
         list_activities_frame.setSize(600,600);
@@ -23,7 +24,6 @@ public class register_window extends JFrame{
 
         JFrame frame2 = new JFrame("Inscription");
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame2.setSize(600, 400);
         frame2.setLocationRelativeTo(null);
         JButton btn_register = new JButton("Inscription");
         JButton btn_alreadyLogin = new JButton("Deja Inscrit");
@@ -102,6 +102,7 @@ public class register_window extends JFrame{
 
         });
 
+        //Fonction
         btn_alreadyLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

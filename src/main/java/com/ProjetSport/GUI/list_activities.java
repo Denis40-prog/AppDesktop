@@ -31,6 +31,7 @@ public class list_activities extends JFrame {
 
         JPanel panelList = new JPanel(gridButton);
         JPanel top = new JPanel();
+        top.setSize(600, 200);
 
         //Bouttons
         JButton addButton = new JButton("Ajouter");
